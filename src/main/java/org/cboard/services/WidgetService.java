@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by yfyuan on 2016/8/22.
@@ -33,14 +34,8 @@ public class WidgetService {
 
     public ServiceStatus save(String userId, String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
-        DashboardWidget widget = new DashboardWidget();
-        widget.setUserId(userId);
-        widget.setName(jsonObject.getString("name"));
-        widget.setData(jsonObject.getString("data"));
-        widget.setCategoryName(jsonObject.getString("categoryName"));
-        if (StringUtils.isEmpty(widget.getCategoryName())) {
-            widget.setCategoryName("默认分类");
-        }
+        DashboardWidget widget = new DashboardWidget(UUID.randomUUID().toString(), userId, jsonObject.getString("name"),
+                jsonObject.getString("data"), jsonObject.getString("categoryName"));
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("widget_name", widget.getName());
         paramMap.put("user_id", widget.getUserId());
@@ -79,12 +74,12 @@ public class WidgetService {
         }
     }
 
-    public ServiceStatus delete(String userId, Long id) {
+    public ServiceStatus delete(String userId, String id) {
         widgetDao.delete(id, userId);
         return new ServiceStatus(ServiceStatus.Status.Success, "success");
     }
 
-    public ServiceStatus checkRule(String userId, Long widgetId) {
+    public ServiceStatus checkRule(String userId, String widgetId) {
         DashboardWidget widget = widgetDao.getWidget(widgetId);
         if (widget == null) {
             return null;

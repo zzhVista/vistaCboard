@@ -1,5 +1,7 @@
 package org.cboard.pojo;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.sql.Timestamp;
 
 /**
@@ -17,6 +19,22 @@ public class DashboardWidget {
     private String permission;
     private Timestamp createTime;
     private Timestamp updateTime;
+
+    public DashboardWidget() {
+    }
+
+    public DashboardWidget(String id, String userId, String name, String data, String categoryName){
+        this.id=id;
+        this.userId=userId;
+        this.name=name;
+        this.data = data;
+        this.categoryName=categoryName;
+        if (StringUtils.isEmpty(categoryName)) {
+            this.setCategoryName("默认分类");
+        } else {
+            this.categoryName = categoryName;
+        }
+    }
 
     public String getPermission() {
         return permission;

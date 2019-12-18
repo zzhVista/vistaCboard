@@ -203,7 +203,7 @@ public class ConfigRuleService {
                 JSONObject jo = (JSONObject) e;
                 switch (jo.getString("resType")) {
                     case "widget":
-                        return widgetDao.checkWidgetRole(userid, jo.getLong("resId"), RolePermission.PATTERN_READ) > 0;
+                        return widgetDao.checkWidgetRole(userid, jo.getString("resId"), RolePermission.PATTERN_READ) > 0;
                     case "dataset":
                         return datasetDao.checkDatasetRole(userid, jo.getString("resId"), RolePermission.PATTERN_READ) > 0;
                     case "board":

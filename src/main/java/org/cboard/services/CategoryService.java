@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by yfyuan on 2016/8/26.
@@ -21,6 +22,7 @@ public class CategoryService {
     public ServiceStatus save(String userId, String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
         DashboardCategory category = new DashboardCategory();
+        category.setId(UUID.randomUUID().toString());
         category.setUserId(userId);
         category.setName(jsonObject.getString("name"));
 

@@ -61,7 +61,7 @@ public class BoardService {
             }
             for (Object w : widgets) {
                 JSONObject ww = (JSONObject) w;
-                Long widgetId = ww.getLong("widgetId");
+                String widgetId = ww.getString("widgetId");
                 DashboardWidget widget = widgetDao.getWidget(widgetId);
                 JSONObject dataJson = JSONObject.parseObject(widget.getData());
                 //DataProviderResult data = dataProviderService.getData(dataJson.getLong("datasource"), Maps.transformValues(dataJson.getJSONObject("query"), Functions.toStringFunction()));

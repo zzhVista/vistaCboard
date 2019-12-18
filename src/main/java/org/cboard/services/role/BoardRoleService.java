@@ -55,7 +55,7 @@ public class BoardRoleService {
                 }
                 for (Object widget : widgets) {
                     JSONObject vw = ((JSONObject) widget).getJSONObject("widget");
-                    Long widgetId = vw.getLong("id");
+                    String widgetId = vw.getString("id");
                     String datasetId = vw.getJSONObject("data").getString("datasetId");
                     String datasourceId = vw.getJSONObject("data").getString("datasource");
                     List<Res> roleInfo = new ArrayList<>();

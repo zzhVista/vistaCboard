@@ -174,7 +174,7 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/deleteWidget")
-    public ServiceStatus deleteWidget(@RequestParam(name = "id") Long id) {
+    public ServiceStatus deleteWidget(@RequestParam(name = "id") String id) {
         return widgetService.delete(tlUser.get().getUserId(), id);
     }
 
@@ -263,7 +263,7 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/checkWidget")
-    public ServiceStatus checkWidget(@RequestParam(name = "id") Long id) {
+    public ServiceStatus checkWidget(@RequestParam(name = "id") String id) {
         return widgetService.checkRule(tlUser.get().getUserId(), id);
     }
 
@@ -344,7 +344,7 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/dashboardWidget")
-    public ViewDashboardWidget dashboardWidget(@RequestParam(name = "id") Long id) {
+    public ViewDashboardWidget dashboardWidget(@RequestParam(name = "id") String id) {
         DashboardWidget widget = widgetDao.getWidget(id);
         return new ViewDashboardWidget(widget);
     }

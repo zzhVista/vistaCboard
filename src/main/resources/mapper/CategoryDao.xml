@@ -9,7 +9,7 @@
 
     <insert id="save" parameterType="org.cboard.pojo.DashboardCategory">
         <![CDATA[
-        INSERT INTO dashboard_category(user_id,category_name) VALUES (#{userId},#{name})
+        INSERT INTO dashboard_category(category_id,user_id,category_name) VALUES (#{id},#{userId},#{name})
         ]]>
     </insert>
 

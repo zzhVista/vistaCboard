@@ -71,7 +71,7 @@
 
     <insert id="save" parameterType="org.cboard.pojo.DashboardWidget">
         <![CDATA[
-        INSERT INTO dashboard_widget(user_id,widget_name,data_json,category_name) VALUES (#{userId},#{name},#{data},#{categoryName})
+        INSERT INTO dashboard_widget(widget_id,user_id,widget_name,data_json,category_name) VALUES (#{id},#{userId},#{name},#{data},#{categoryName})
         ]]>
     </insert>
 
