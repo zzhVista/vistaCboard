@@ -9,7 +9,7 @@
     </update>
 
     <select id="getRole" resultType="org.cboard.pojo.DashboardRole">
-        SELECT role_id roleId,role_name roleName,user_id userId FROM dashboard_role where role_id = #{0}
+        SELECT role_id roleId,role_name roleName,user_id userId FROM dashboard_role where role_id = #{arg0}
     </select>
 
     <select id="getRoleList" resultType="org.cboard.pojo.DashboardRole">
@@ -17,7 +17,7 @@
                role_name roleName,
                user_id userId
           FROM dashboard_role
-         WHERE #{0} = '${admin_user_id}' or user_id = #{0}
+         WHERE #{arg0} = '${admin_user_id}' or user_id = #{arg0}
         ORDER BY role_name
     </select>
 
@@ -25,7 +25,7 @@
         SELECT r.role_id roleId,r.role_name roleName,ur.user_id userId
           FROM dashboard_role r
           LEFT JOIN dashboard_user_role ur on ur.role_id=r.role_id
-         WHERE ur.user_id = #{0}
+         WHERE ur.user_id = #{arg0}
          ORDER BY r.role_name
     </select>
 
@@ -46,24 +46,24 @@
 
     <insert id="saveRoleRes" parameterType="org.cboard.pojo.DashboardRoleRes">
         <![CDATA[
-        insert into dashboard_role_res (res_id, role_id,res_type,permission) values (#{resId}, #{roleId} ,#{resType},#{permission})
+        insert into dashboard_role_res (role_res_id,res_id, role_id,res_type,permission) values (#{roleResId},#{resId}, #{roleId} ,#{resType},#{permission})
         ]]>
     </insert>
 
     <delete id="deleteRoleRes">
-        delete from dashboard_role_res where role_id = #{0}
+        delete from dashboard_role_res where role_id = #{arg0}
     </delete>
 
     <delete id="deleteRoleResByResId">
-        delete from dashboard_role_res where res_id = #{0} and res_type = #{1}
+        delete from dashboard_role_res where res_id = #{arg0} and res_type = #{arg1}
     </delete>
 
     <delete id="deleteRole">
-        delete from dashboard_role where role_id = #{0}
+        delete from dashboard_role where role_id = #{arg0}
     </delete>
 
     <select id="getUserRoleResList" resultType="org.cboard.pojo.DashboardRoleRes">
-        select rr.role_res_id roleResId,rr.role_id roleId,rr.res_id resId,rr.res_type resType,rr.permission permission FROM dashboard_user_role ur LEFT JOIN dashboard_role_res rr ON ur.role_id = rr.role_id WHERE ur.user_id = #{0} AND rr.res_type = #{1}
+        select rr.role_res_id roleResId,rr.role_id roleId,rr.res_id resId,rr.res_type resType,rr.permission permission FROM dashboard_user_role ur LEFT JOIN dashboard_role_res rr ON ur.role_id = rr.role_id WHERE ur.user_id = #{arg0} AND rr.res_type = #{arg1}
     </select>
 
 </mapper>

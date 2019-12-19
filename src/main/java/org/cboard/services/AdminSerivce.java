@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
+import java.util.UUID;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.cboard.dao.*;
@@ -162,6 +163,7 @@ public class AdminSerivce {
                 for (Object res : arr) {
                     JSONObject jo = (JSONObject) res;
                     DashboardRoleRes roleRes = new DashboardRoleRes();
+                    roleRes.setRoleResId(UUID.randomUUID().toString());
                     roleRes.setRoleId(rid);
                     roleRes.setResId(jo.getString("resId"));
                     roleRes.setResType(jo.getString("resType"));
