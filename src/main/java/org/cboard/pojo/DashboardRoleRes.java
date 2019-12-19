@@ -4,9 +4,9 @@ package org.cboard.pojo;
  * Created by yfyuan on 2016/12/7.
  */
 public class DashboardRoleRes {
-    private Long roleResId;
+    private String roleResId;
     private String roleId;
-    private Long resId;
+    private String resId;
     private String resType;
     private String permission;
 
@@ -26,11 +26,11 @@ public class DashboardRoleRes {
         this.resType = resType;
     }
 
-    public Long getRoleResId() {
+    public String getRoleResId() {
         return roleResId;
     }
 
-    public void setRoleResId(Long roleResId) {
+    public void setRoleResId(String roleResId) {
         this.roleResId = roleResId;
     }
 
@@ -42,11 +42,11 @@ public class DashboardRoleRes {
         this.roleId = roleId;
     }
 
-    public Long getResId() {
+    public String getResId() {
         return resId;
     }
 
-    public void setResId(Long resId) {
+    public void setResId(String resId) {
         this.resId = resId;
     }
 }

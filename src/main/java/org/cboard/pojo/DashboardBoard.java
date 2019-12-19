@@ -19,6 +19,17 @@ public class DashboardBoard {
     private Timestamp createTime;
     private Timestamp updateTime;
 
+    public DashboardBoard() {
+    }
+
+    public DashboardBoard(String id, String userId, String categoryId, String name,
+        String layout) {
+        this.id = id;
+        this.userId = userId;
+        this.categoryId = categoryId;
+        this.name = name;
+        this.layout = layout;
+    }
 
     public String getPermission() {
         return permission;

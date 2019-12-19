@@ -6,18 +6,18 @@ import com.alibaba.fastjson.JSONObject;
  * Created by yfyuan on 2017/2/21.
  */
 public class PersistContext {
-    private Long dashboardId;
+    private String dashboardId;
     private JSONObject data;
 
-    public PersistContext(Long dashboardId) {
+    public PersistContext(String dashboardId) {
         this.dashboardId = dashboardId;
     }
 
-    public Long getDashboardId() {
+    public String getDashboardId() {
         return dashboardId;
     }
 
-    public void setDashboardId(Long dashboardId) {
+    public void setDashboardId(String dashboardId) {
         this.dashboardId = dashboardId;
     }
 

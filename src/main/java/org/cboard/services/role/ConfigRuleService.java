@@ -207,7 +207,7 @@ public class ConfigRuleService {
                     case "dataset":
                         return datasetDao.checkDatasetRole(userid, jo.getString("resId"), RolePermission.PATTERN_READ) > 0;
                     case "board":
-                        return boardDao.checkBoardRole(userid, jo.getLong("resId"), RolePermission.PATTERN_READ) > 0;
+                        return boardDao.checkBoardRole(userid, jo.getString("resId"), RolePermission.PATTERN_READ) > 0;
                     default:
                         return false;
                 }

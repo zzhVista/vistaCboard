@@ -4,16 +4,16 @@ package org.cboard.pojo;
  * Created by yfyuan on 2017/5/5.
  */
 public class DashboardBoardParam {
-    private Long id;
+    private String id;
     private String userId;
-    private Long boardId;
+    private String boardId;
     private String config;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -25,11 +25,11 @@ public class DashboardBoardParam {
         this.userId = userId;
     }
 
-    public Long getBoardId() {
+    public String getBoardId() {
         return boardId;
     }
 
-    public void setBoardId(Long boardId) {
+    public void setBoardId(String boardId) {
         this.boardId = boardId;
     }
 

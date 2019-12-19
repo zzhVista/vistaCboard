@@ -8,9 +8,9 @@ import org.cboard.services.role.RolePermission;
  */
 public class ViewDashboardRoleRes {
 
-    private Long roleResId;
+    private String roleResId;
     private String roleId;
-    private Long resId;
+    private String resId;
     private String resType;
     private boolean edit;
     private boolean delete;
@@ -41,11 +41,11 @@ public class ViewDashboardRoleRes {
         this.delete = delete;
     }
 
-    public Long getRoleResId() {
+    public String getRoleResId() {
         return roleResId;
     }
 
-    public void setRoleResId(Long roleResId) {
+    public void setRoleResId(String roleResId) {
         this.roleResId = roleResId;
     }
 
@@ -57,11 +57,11 @@ public class ViewDashboardRoleRes {
         this.roleId = roleId;
     }
 
-    public Long getResId() {
+    public String getResId() {
         return resId;
     }
 
-    public void setResId(Long resId) {
+    public void setResId(String resId) {
         this.resId = resId;
     }
 

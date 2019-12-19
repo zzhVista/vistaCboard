@@ -43,7 +43,7 @@ public class BoardRoleService {
 
     @Around("execution(* org.cboard.services.BoardService.getBoardData(*))")
     public Object getBoardData(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        Long id = (Long) proceedingJoinPoint.getArgs()[0];
+        String id = (String) proceedingJoinPoint.getArgs()[0];
         String userid = authenticationService.getCurrentUser().getUserId();
         if (boardDao.checkBoardRole(userid, id, RolePermission.PATTERN_READ) > 0) {
             ViewDashboardBoard value = (ViewDashboardBoard) proceedingJoinPoint.proceed();
@@ -86,7 +86,7 @@ public class BoardRoleService {
         String json = (String) proceedingJoinPoint.getArgs()[1];
         JSONObject jsonObject = JSONObject.parseObject(json);
         String userid = authenticationService.getCurrentUser().getUserId();
-        if (boardDao.checkBoardRole(userid, jsonObject.getLong("id"), RolePermission.PATTERN_EDIT) > 0) {
+        if (boardDao.checkBoardRole(userid, jsonObject.getString("id"), RolePermission.PATTERN_EDIT) > 0) {
             Object value = proceedingJoinPoint.proceed();
             return value;
         } else {
@@ -96,7 +96,7 @@ public class BoardRoleService {
 
     @Around("execution(* org.cboard.services.BoardService.delete(..))")
     public Object delete(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        Long id = (Long) proceedingJoinPoint.getArgs()[1];
+        String id = (String) proceedingJoinPoint.getArgs()[1];
         String userid = authenticationService.getCurrentUser().getUserId();
         if (boardDao.checkBoardRole(userid, id, RolePermission.PATTERN_DELETE) > 0) {
             Object value = proceedingJoinPoint.proceed();

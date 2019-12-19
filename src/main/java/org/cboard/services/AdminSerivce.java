@@ -144,7 +144,7 @@ public class AdminSerivce {
             for (String rid : roleId) {
                 DashboardRoleRes roleRes = new DashboardRoleRes();
                 roleRes.setRoleId(rid);
-                roleRes.setResId(jo.getLong("resId"));
+                roleRes.setResId(jo.getString("resId"));
                 roleRes.setResType(jo.getString("resType"));
                 roleRes.setPermission("" + (false ? 1 : 0) + (false ? 1 : 0));
                 roleDao.saveRoleRes(roleRes);
@@ -163,7 +163,7 @@ public class AdminSerivce {
                     JSONObject jo = (JSONObject) res;
                     DashboardRoleRes roleRes = new DashboardRoleRes();
                     roleRes.setRoleId(rid);
-                    roleRes.setResId(jo.getLong("resId"));
+                    roleRes.setResId(jo.getString("resId"));
                     roleRes.setResType(jo.getString("resType"));
                     boolean edit = jo.getBooleanValue("edit");
                     boolean delete = jo.getBooleanValue("delete");
@@ -193,7 +193,7 @@ public class AdminSerivce {
         } else {
             List<DashboardRoleRes> resList = roleDao.getUserRoleResList(userId, "board");
 
-            List<Long> resIdList = resList.stream().filter(e -> RolePermission.isEdit(e.getPermission())).map(e -> e.getResId()).distinct().collect(Collectors.toList());
+            List<String> resIdList = resList.stream().filter(e -> RolePermission.isEdit(e.getPermission())).map(e -> e.getResId()).distinct().collect(Collectors.toList());
             return boardDao.getBoardList(userId).stream().filter(e -> resIdList.contains(e.getId()) || e.getUserId().equals(userId)).collect(Collectors.toList());
         }
     }
@@ -203,7 +203,7 @@ public class AdminSerivce {
             return datasetDao.getDatasetList(userId);
         } else {
             List<DashboardRoleRes> resList = roleDao.getUserRoleResList(userId, "dataset");
-            List<Long> resIdList = resList.stream().filter(e -> RolePermission.isEdit(e.getPermission())).map(e -> e.getResId()).distinct().collect(Collectors.toList());
+            List<String> resIdList = resList.stream().filter(e -> RolePermission.isEdit(e.getPermission())).map(e -> e.getResId()).distinct().collect(Collectors.toList());
             return datasetDao.getDatasetList(userId).stream().filter(e -> resIdList.contains(e.getId()) || e.getUserId().equals(userId)).collect(Collectors.toList());
         }
     }
@@ -213,7 +213,7 @@ public class AdminSerivce {
             return widgetDao.getWidgetList(userId);
         } else {
             List<DashboardRoleRes> resList = roleDao.getUserRoleResList(userId, "widget");
-            List<Long> resIdList = resList.stream().filter(e -> RolePermission.isEdit(e.getPermission())).map(e -> e.getResId()).distinct().collect(Collectors.toList());
+            List<String> resIdList = resList.stream().filter(e -> RolePermission.isEdit(e.getPermission())).map(e -> e.getResId()).distinct().collect(Collectors.toList());
             return widgetDao.getWidgetList(userId).stream().filter(e -> resIdList.contains(e.getId()) || e.getUserId().equals(userId)).collect(Collectors.toList());
         }
     }

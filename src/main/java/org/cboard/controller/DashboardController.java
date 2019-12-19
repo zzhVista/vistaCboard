@@ -195,12 +195,12 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/deleteBoard")
-    public ServiceStatus deleteBoard(@RequestParam(name = "id") Long id) {
+    public ServiceStatus deleteBoard(@RequestParam(name = "id") String id) {
         return boardService.delete(tlUser.get().getUserId(), id);
     }
 
     @RequestMapping(value = "/getBoardData")
-    public ViewDashboardBoard getBoardData(@RequestParam(name = "id") Long id) {
+    public ViewDashboardBoard getBoardData(@RequestParam(name = "id") String id) {
         return boardService.getBoardData(id);
     }
 
@@ -375,7 +375,7 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/exportBoard")
-    public ResponseEntity<byte[]> exportBoard(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<byte[]> exportBoard(@RequestParam(name = "id") String id) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment", "report.xls");
@@ -404,13 +404,13 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/getBoardParam")
-    public DashboardBoardParam getBoardParam(@RequestParam(name = "boardId") Long boardId) {
+    public DashboardBoardParam getBoardParam(@RequestParam(name = "boardId") String boardId) {
         return boardDao.getBoardParam(boardId, tlUser.get().getUserId());
     }
 
     @RequestMapping(value = "/saveBoardParam")
     @Transactional
-    public String saveBoardParam(@RequestParam(name = "boardId") Long boardId,
+    public String saveBoardParam(@RequestParam(name = "boardId") String boardId,
                                  @RequestParam(name = "config") String config) {
         if (boardId == null) {
             return "";

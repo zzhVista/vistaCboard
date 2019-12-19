@@ -23,15 +23,15 @@ public interface BoardDao {
 
     int update(DashboardBoard board);
 
-    int delete(Long id, String userId);
+    int delete(String id, String userId);
 
-    DashboardBoard getBoard(Long id);
+    DashboardBoard getBoard(String id);
 
-    long checkBoardRole(String userId, Long boardId, String permissionPattern);
+    long checkBoardRole(String userId, String boardId, String permissionPattern);
 
-    DashboardBoardParam getBoardParam(Long boardId, String userId);
+    DashboardBoardParam getBoardParam(String boardId, String userId);
 
     int saveBoardParam(DashboardBoardParam boardParam);
 
-    int deleteBoardParam(Long boardId, String userId);
+    int deleteBoardParam(String boardId, String userId);
 }

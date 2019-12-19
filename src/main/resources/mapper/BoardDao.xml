@@ -67,8 +67,8 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" keyColumn="board_id" parameterType="org.cboard.pojo.DashboardBoard">
-        INSERT INTO dashboard_board(user_id,board_name,layout_json,category_id)
-        VALUES (#{userId},#{name},#{layout},
+        INSERT INTO dashboard_board(board_id,user_id,board_name,layout_json,category_id)
+        VALUES (#{id},#{userId},#{name},#{layout},
         <choose>
             <when test="categoryId == null">
                 null

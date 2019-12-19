@@ -62,7 +62,7 @@ public class MailService {
     private Function<Object, PersistContext> getPersistBoard(List<PersistContext> persistContextList) {
         return e -> persistContextList.stream()
                 .filter(board -> {
-                    Long boardId = board.getDashboardId();
+                    String boardId = board.getDashboardId();
                     return boardId != null && boardId.equals((((JSONObject) e).getLong("id")));
                 })
                 .findFirst().get();
@@ -72,7 +72,7 @@ public class MailService {
         JSONObject config = JSONObject.parseObject(job.getConfig());
 
         List<PersistContext> persistContextList = config.getJSONArray("boards").stream()
-                .map(e -> persistService.persist(((JSONObject) e).getLong("id"), job.getUserId()))
+                .map(e -> persistService.persist(((JSONObject) e).getString("id"), job.getUserId()))
                 .collect(Collectors.toList());
 
         List<PersistContext> workbookList = config.getJSONArray("boards").stream()

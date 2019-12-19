@@ -45,7 +45,7 @@ public class BoardService {
         return boardDao.getBoardList(userId);
     }
 
-    public ViewDashboardBoard getBoardData(Long id) {
+    public ViewDashboardBoard getBoardData(String id) {
         DashboardBoard board = boardDao.getBoard(id);
         JSONObject layout = JSONObject.parseObject(board.getLayout());
         JSONArray rows = layout.getJSONArray("rows");
@@ -78,7 +78,7 @@ public class BoardService {
 
     public ServiceStatus save(String userId, String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
-        DashboardBoard board = new DashboardBoard();
+        DashboardBoard board = new DashboardBoard(jsonObject.getString("id"),userId,jsonObject.getString("name"),jsonObject.getString("categoryId"),jsonObject.getString("layout"));
         board.setUserId(userId);
         board.setName(jsonObject.getString("name"));
         board.setCategoryId(jsonObject.getString("categoryId"));
@@ -118,7 +118,7 @@ public class BoardService {
         }
     }
 
-    public ServiceStatus delete(String userId, Long id) {
+    public ServiceStatus delete(String userId, String id) {
         try {
             boardDao.delete(id, userId);
             return new ServiceStatus(ServiceStatus.Status.Success, "success");
@@ -128,7 +128,7 @@ public class BoardService {
         }
     }
 
-    public byte[] exportBoard(Long id, String userId) {
+    public byte[] exportBoard(String id, String userId) {
         PersistContext persistContext = persistService.persist(id, userId);
         List<PersistContext> workbookList = new ArrayList<>();
         workbookList.add(persistContext);
