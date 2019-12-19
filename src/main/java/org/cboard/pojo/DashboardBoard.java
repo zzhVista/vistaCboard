@@ -22,7 +22,7 @@ public class DashboardBoard {
     public DashboardBoard() {
     }
 
-    public DashboardBoard(String id, String userId, String categoryId, String name,
+    public DashboardBoard(String id, String userId, String name,String categoryId,
         String layout) {
         this.id = id;
         this.userId = userId;

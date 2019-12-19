@@ -3,7 +3,7 @@
 <mapper namespace="org.cboard.dao.CategoryDao">
 
     <select id="getCategoryList" resultType="org.cboard.pojo.DashboardCategory">
-       SELECT category_id id,user_id userId,category_name FROM dashboard_category
+       SELECT category_id AS id,user_id AS userId,category_name AS name FROM dashboard_category
        order by category_name
     </select>
 
