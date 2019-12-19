@@ -19,14 +19,14 @@ public interface JobDao {
 
     List<DashboardJob> getJobListAdmin(String userId);
 
-    int delete(Long jobId);
+    int delete(String jobId);
 
-    int updateLastExecTime(Long jobId, Date date);
+    int updateLastExecTime(String jobId, Date date);
 
-    int updateStatus(Long jobId, Long status, String log);
+    int updateStatus(String jobId, Long status, String log);
 
-    DashboardJob getJob(Long jobId);
+    DashboardJob getJob(String jobId);
 
-    long checkJobRole(String userId, Long jobId, String permissionPattern);
+    long checkJobRole(String userId, String jobId, String permissionPattern);
 
 }

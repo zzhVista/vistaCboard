@@ -365,12 +365,12 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/deleteJob")
-    public ServiceStatus deleteJob(@RequestParam(name = "id") Long id) {
+    public ServiceStatus deleteJob(@RequestParam(name = "id") String id) {
         return jobService.delete(tlUser.get().getUserId(), id);
     }
 
     @RequestMapping(value = "/execJob")
-    public ServiceStatus execJob(@RequestParam(name = "id") Long id) {
+    public ServiceStatus execJob(@RequestParam(name = "id") String id) {
         return jobService.exec(tlUser.get().getUserId(), id);
     }
 
@@ -399,7 +399,7 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/getJobStatus")
-    public ViewDashboardJob getJobStatus(@RequestParam(name = "id") Long id) {
+    public ViewDashboardJob getJobStatus(@RequestParam(name = "id") String id) {
         return new ViewDashboardJob(jobDao.getJob(id));
     }
 

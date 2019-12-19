@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class ViewDashboardJob {
 
-    private Long id;
+    private String id;
     private String name;
     private String cronExp;
     private Map<String, Object> daterange;
@@ -81,11 +81,11 @@ public class ViewDashboardJob {
         this.userName = userName;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

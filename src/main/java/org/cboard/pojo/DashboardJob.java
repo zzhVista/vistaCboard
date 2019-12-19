@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class DashboardJob {
 
-    private Long id;
+    private String id;
     private String name;
     private String cronExp;
     private Date startDate;
@@ -61,11 +61,11 @@ public class DashboardJob {
         this.userId = userId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
+import java.util.UUID;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.cboard.dao.JobDao;
 import org.cboard.dto.ViewDashboardJob;
@@ -120,6 +121,7 @@ public class JobService implements InitializingBean {
     public ServiceStatus save(String userId, String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
         DashboardJob job = new DashboardJob();
+        job.setId(UUID.randomUUID().toString());
         job.setUserId(userId);
         job.setName(jsonObject.getString("name"));
         job.setConfig(jsonObject.getString("config"));
@@ -141,7 +143,7 @@ public class JobService implements InitializingBean {
     public ServiceStatus update(String userId, String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
         DashboardJob job = new DashboardJob();
-        job.setId(jsonObject.getLong("id"));
+        job.setId(jsonObject.getString("id"));
         job.setName(jsonObject.getString("name"));
         job.setConfig(jsonObject.getString("config"));
         job.setCronExp(jsonObject.getString("cronExp"));
@@ -159,13 +161,13 @@ public class JobService implements InitializingBean {
         return new ServiceStatus(ServiceStatus.Status.Success, "success");
     }
 
-    public ServiceStatus delete(String userId, Long id) {
+    public ServiceStatus delete(String userId, String id) {
         jobDao.delete(id);
         configScheduler();
         return new ServiceStatus(ServiceStatus.Status.Success, "success");
     }
 
-    public ServiceStatus exec(String userId, Long id) {
+    public ServiceStatus exec(String userId, String id) {
         DashboardJob job = jobDao.getJob(id);
         new Thread(() ->
                 sendMail(job)

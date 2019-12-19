@@ -63,7 +63,7 @@ public class MailService {
         return e -> persistContextList.stream()
                 .filter(board -> {
                     String boardId = board.getDashboardId();
-                    return boardId != null && boardId.equals((((JSONObject) e).getLong("id")));
+                    return boardId != null && boardId.equals((((JSONObject) e).getString("id")));
                 })
                 .findFirst().get();
     }
