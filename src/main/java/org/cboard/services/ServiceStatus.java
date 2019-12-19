@@ -8,14 +8,14 @@ public class ServiceStatus {
     private Status status;
     private String msg;
 
-    private Long id;
+    private String id;
 
     public ServiceStatus(Status status, String msg) {
         this.status = status;
         this.msg = msg;
     }
 
-    public ServiceStatus(Status status, String msg, Long id) {
+    public ServiceStatus(Status status, String msg, String id) {
         this.status = status;
         this.msg = msg;
         this.id = id;
@@ -56,11 +56,11 @@ public class ServiceStatus {
         this.msg = msg;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

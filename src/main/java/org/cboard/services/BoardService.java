@@ -78,7 +78,7 @@ public class BoardService {
 
     public ServiceStatus save(String userId, String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
-        DashboardBoard board = new DashboardBoard(jsonObject.getString("id"),userId,jsonObject.getString("name"),jsonObject.getString("categoryId"),jsonObject.getString("layout"));
+        DashboardBoard board = new DashboardBoard(UUID.randomUUID().toString(),userId,jsonObject.getString("name"),jsonObject.getString("categoryId"),jsonObject.getString("layout"));
         board.setUserId(userId);
         board.setName(jsonObject.getString("name"));
         board.setCategoryId(jsonObject.getString("categoryId"));
@@ -89,7 +89,7 @@ public class BoardService {
         paramMap.put("board_name", board.getName());
         if (boardDao.countExistBoardName(paramMap) <= 0) {
             boardDao.save(board);
-            return new ServiceStatus(ServiceStatus.Status.Success, "success", Long.parseLong(board.getId()));
+            return new ServiceStatus(ServiceStatus.Status.Success, "success", board.getId());
         } else {
             return new ServiceStatus(ServiceStatus.Status.Fail, "Duplicated name");
         }
@@ -97,12 +97,7 @@ public class BoardService {
 
     public ServiceStatus update(String userId, String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
-        DashboardBoard board = new DashboardBoard();
-        board.setUserId(userId);
-        board.setName(jsonObject.getString("name"));
-        board.setCategoryId(jsonObject.getString("categoryId"));
-        board.setLayout(jsonObject.getString("layout"));
-        board.setId(jsonObject.getString("id"));
+        DashboardBoard board = new DashboardBoard(jsonObject.getString("id"),userId,jsonObject.getString("name"),jsonObject.getString("categoryId"),jsonObject.getString("layout"));
         board.setUpdateTime(new Timestamp(Calendar.getInstance().getTimeInMillis()));
 
 

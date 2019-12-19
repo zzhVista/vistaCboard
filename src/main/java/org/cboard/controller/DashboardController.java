@@ -221,7 +221,7 @@ public class DashboardController extends BaseController {
     }
 
     @RequestMapping(value = "/deleteCategory")
-    public String deleteCategory(@RequestParam(name = "id") Long id) {
+    public String deleteCategory(@RequestParam(name = "id") String id) {
         return categoryService.delete(id);
     }
 

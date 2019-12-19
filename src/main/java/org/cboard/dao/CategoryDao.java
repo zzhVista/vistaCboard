@@ -20,5 +20,5 @@ public interface CategoryDao {
 
     int update(DashboardCategory dashboardCategory);
 
-    int delete(Long id);
+    int delete(String id);
 }

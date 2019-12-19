@@ -54,7 +54,7 @@ public class CategoryService {
         }
     }
 
-    public String delete(Long id) {
+    public String delete(String id) {
         categoryDao.delete(id);
         return "1";
     }
